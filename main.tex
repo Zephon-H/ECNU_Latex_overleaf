@@ -1,0 +1,206 @@
+\documentclass[UTF8,openright]{ctexbook}
+
+% 论文版面要求:
+% 统一按 word 格式A4纸（页面设置按word默认值）编排、打印、制作。
+% 正文内容字体为宋体；字号为小4号；字符间距为标准；行距为25磅(约0.88175cm)。
+
+%%%%% ===== 页面设置
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=3.17cm,right=3.17cm,%
+            ]{geometry}
+            
+\setlength{\parindent}{2em}
+%默认的弹性间距会导致文中某些排版flush的时候，出现大量空白。
+\setlength{\parskip}{0.5em} %指定固定段后间距，默认为弹性间距。
+\setlength{\intextsep}{10pt} %固定浮浮动体前后间距。
+
+
+%%%%% =====章节 标题 设置
+\ctexset{%
+  contentsname={\vspace{-3.5em}\centerline{\zihao{3}\heiti\textbf{ 目\quad 录}}\vspace{-0.7em}},
+  listfigurename={\vspace{-3.5em}\centerline{\zihao{-3}\heiti 插\ 图\ 目\ 录}\vspace{-0.5em}},
+  listtablename={\vspace{-3.5em}\centerline{\zihao{-3}\heiti 表\ 格\ 目\ 录}\vspace{-0.5em}},
+  bibname={\vspace{-3em}\centerline{\zihao{-3}\heiti 参\ 考\ 文\ 献}\vspace{3em}},
+  chapter={name={第,章},
+           number=\chinese{chapter}, %指定章序号为一二三。。。。
+           nameformat={\zihao{3}\bfseries},
+           titleformat={\zihao{3}\bfseries},
+           beforeskip={-10pt},
+           afterskip={20pt}
+           },
+  section={format=\raggedright,
+           nameformat={\zihao{4}\bfseries},
+           titleformat={\zihao{4}\bfseries},
+%           afterskip={1ex plus 0.2ex}
+           beforeskip={1ex},% 固定段前段后间距，
+           afterskip={1ex}
+           },
+  subsection={format=\raggedright,
+           nameformat={\zihao{-4}\bfseries},
+           titleformat={\zihao{-4}\bfseries},
+%           afterskip={0.5ex plus 0.1ex}
+           beforeskip={0.5ex},
+           afterskip={0.5ex}
+           }
+}
+%%%%% ===== 中英文字体
+\setmainfont{Times New Roman}
+\setCJKfamilyfont{STSong}{simsun.ttc}
+\newcommand{\STSong}{\CJKfamily{STSong}}
+
+%%%%% ===== 常用宏包
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage[amsmath,thref,thmmarks,hyperref]{ntheorem}
+\usepackage{graphicx,xcolor,float}
+\usepackage{fancyhdr}
+\usepackage{tocloft} % 设置目录中的条目间距
+
+
+\renewcommand\cftdot{\textsubscript{……}}
+\renewcommand\cftdotsep{0}
+
+\setlength{\cftbeforechapskip}{1pt}
+\renewcommand{\cftchapleader}{\cftdotfill{\cdot}}
+
+
+\usepackage{booktabs} % toprule, midrule, bottomrule
+\usepackage{varwidth} % 可变宽度的 parbox
+
+%%%%% ===== 参考文献与链接
+\usepackage[numbers,sort&compress,sectionbib,super, square]{natbib} %引用上标，禁用连续缩写。
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+
+\usepackage[xetex,pagebackref]{hyperref}
+\hypersetup{CJKbookmarks=true,colorlinks=true,citecolor=black,%
+            linkcolor=black,urlcolor=black,bookmarksnumbered=true,%
+	        bookmarksopen=true,breaklinks=true}
+
+%%%%% ===== 算法
+\usepackage{algorithm,algpseudocode}
+
+%%%%% ===== 其他
+\usepackage{ulem}
+\def\ULthickness{1pt}
+
+
+
+
+%%%%%===== Code Style代码
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Scala,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\input{ecnu.cls}
+\zihao{-4}
+\studentinfo{
+    graduateyear = {2020},
+	class={ },
+	security={ },
+	ctitle={标题标题标题标题标题标题\linebreak 标题标题标题标题标题标题},
+	caffil={计算机科学与技术学院},
+	cmajor={计算机技术},
+	cdirection={嵌入式系统}, % 数值代数
+	csupervisor={xxx\, 副教授},
+	cauthor={陈xx},
+	studentid={51174506xxx},
+	cdate={20xx 年 10 月},
+	etitle={Research and Implementation of  \linebreak What You want to do},
+    eaffil={School of Computer Science and Technology} ,
+    emajor={Computer Technology}, % Computational Mathematics
+    edirection={Embedded System}, % Numerical Algebra
+    esupervisor={Prof. XXX Shen},
+    eauthor={XXX Chen},
+    edate={May, 2021}
+}
+\def\cctitle{标题标题标题标题标题标题标题标题标题标题标题标题}
+\def\ccauthor{\@cauthor}
+
+%%%%% ===== 生成封面 ===== %使用不同的页边距
+\newgeometry{top=2.0cm,bottom=2.0cm,left=2.5cm,right=2.5cm}
+{
+\renewcommand{\baselinestretch}{1.6}
+\makecover
+}
+
+%%%%% ===== 原创性声明与著作权使用声明 =====
+\include{Declaration}
+
+%%%%% ===== 答辩委员会成员 =====
+\include{Committee}
+
+\frontmatter
+
+\makeatletter
+\let\ps@plain\ps@fancy% Let 'plain' be exactly the same as 'fancy'
+\makeatother
+\pagestyle{fancy} %使用fancy页眉和页脚
+\fancyfoot[LO,LE]{}
+\fancyfoot[RO,RE]{{\thepage}} %单页打印，此处页码固定右下角
+%%%%% ===== 中文摘要 =====
+\include{Abstract_chs}
+%%%%% ===== 英文摘要 =====
+\include{Abstract_eng}
+%%%%% ===== 生成目录
+\let\cleardoublepage\clearpage
+%\pagestyle{empty}
+\setcounter{tocdepth}{2} %向下显示到两级标题
+\phantomsection % 修复引用问题
+\addcontentsline{toc}{chapter}{目录}
+\tableofcontents
+%%%%%% ===== 正文部分 ===== %%%%%
+\mainmatter
+\linespread{1.6}\selectfont % 行距固定25磅，宋体
+%\setlength{\baselineskip}{0.88175cm}
+\pagestyle{fancy}
+\fancyfoot[RO,RE]{}
+\fancyfoot[LO,LE]{} %清空之前的页码排版。
+\fancyfoot[RO,LE]{{\thepage}}%双面打印，页码向外排布。
+
+\include{chap/chapter1}
+\include{chap/chapter2}
+\include{chap/chapter3}
+\include{chap/reference}
+% \chapter{引言}
+% \section{研究背景和意义}
+
+
+% 引言部分\cite{bi:hw-ml-challenges}, 介绍论文研究课题的应用背景或者问题来源,\cite{bi:hw-sw-co-design}
+% 一些基本概念, 现有成果等等.
+
+
+% \section{国内外研究现状}
+
+
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+% 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍, 现有成果介绍.
+
+% \section {本研究工作内容和章节安排}
+
+
+
+\end{document}}
